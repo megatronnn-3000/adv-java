@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Rental System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Vehicle Rental System</h1>
+    <nav>
+        <button class="tab active" data-tab="vehicles">Vehicles</button>
+        <button class="tab" data-tab="customers">Customers</button>
+        <button class="tab" data-tab="rentals">Rentals</button>
+    </nav>
+</header>
+
+<main>
+    <div id="message" class="message hidden"></div>
+
+    <!-- Vehicles -->
+    <section id="vehicles" class="panel">
+        <div class="card">
+            <h2>Add Vehicle</h2>
+            <form id="vehicleForm" class="form-row">
+                <select name="type" required>
+                    <option value="car">Car</option>
+                    <option value="bike">Bike</option>
+                </select>
+                <input name="brand" placeholder="Brand" required>
+                <input name="model" placeholder="Model" required>
+                <input name="ratePerDay" type="number" min="1" step="any" placeholder="Rate / day (Rs.)" required>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <h2>All Vehicles</h2>
+                <label><input type="checkbox" id="onlyAvailable"> Show only available</label>
+            </div>
+            <table>
+                <thead><tr><th>ID</th><th>Type</th><th>Brand</th><th>Model</th><th>Rate / Day</th><th>Status</th></tr></thead>
+                <tbody id="vehicleTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Customers -->
+    <section id="customers" class="panel hidden">
+        <div class="card">
+            <h2>Register Customer</h2>
+            <form id="customerForm" class="form-row">
+                <input name="name" placeholder="Name" required>
+                <input name="phone" placeholder="Phone" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div class="card">
+            <h2>Customers</h2>
+            <table>
+                <thead><tr><th>ID</th><th>Name</th><th>Phone</th></tr></thead>
+                <tbody id="customerTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Rentals -->
+    <section id="rentals" class="panel hidden">
+        <div class="card">
+            <h2>Rent a Vehicle</h2>
+            <form id="rentalForm" class="form-row">
+                <select name="customerId" id="rentCustomer" required></select>
+                <select name="vehicleId" id="rentVehicle" required></select>
+                <input name="days" type="number" min="1" placeholder="Days" required>
+                <button type="submit">Rent</button>
+            </form>
+            <p id="estimate" class="muted"></p>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <h2>Rentals</h2>
+                <label><input type="checkbox" id="onlyActive"> Show only active</label>
+            </div>
+            <table>
+                <thead><tr><th>ID</th><th>Customer</th><th>Vehicle</th><th>Days</th><th>Total</th><th>Status</th><th></th></tr></thead>
+                <tbody id="rentalTable"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
